@@ -1,0 +1,29 @@
+version: "3.7"
+services:
+  app:
+    container_name: php
+    image: php:fpm
+    # db 컨테이너가 올라간 후 app 컨테이너를 올린다.
+    depends_on:
+      - db
+    ports:
+      - "9000:9000"
+    volumes:
+      - ./nginx/html:/var/www/html
+  web:
+    container_name: nginx
+    # 이미지 지정 - 직접 작성한 dockerfile을 실행하여 컨테이너 생성
+    build:
+      context: ./nginx
+      dockerfile: dockerfile
+    depends_on:
+      - app
+    volumes:
+      - ./nginx/html:/var/www/html
+      - ./nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf
+    ports:
+      - "80:80"
+      - "443:443"
+    links:
+      - app
+    restart: always
