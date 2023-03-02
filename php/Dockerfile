@@ -4,7 +4,9 @@ WORKDIR /var/www
 
 ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
 
-RUN apk update && apk add \
+RUN apk update \ 
+    && apk add --update linux-headers \
+    && apk add \
     build-base \
     freetype-dev \
     libjpeg-turbo-dev \
@@ -24,7 +26,7 @@ RUN docker-php-ext-configure gd
 RUN docker-php-ext-install gd
 
 # Install XDebug Extension
-RUN pecl install xdebug; \
+RUN pecl install xdebug \
     && docker-php-ext-enable xdebug \
     && echo "xdebug.mode=debug" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
     && echo "xdebug.start_with_request = yes" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
