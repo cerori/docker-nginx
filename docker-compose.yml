@@ -3,9 +3,6 @@ services:
   app:
     container_name: php
     image: php:fpm
-    # db 컨테이너가 올라간 후 app 컨테이너를 올린다.
-    depends_on:
-      - db
     ports:
       - "9000:9000"
     volumes:
