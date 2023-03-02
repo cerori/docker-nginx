@@ -8,5 +8,7 @@
 # chmod +x /usr/local/bin/docker-compose
 
 # docker-compose up -d
+
+# ufw allow from 원격지아이피 to any port 80 proto tcp
 </code>
 </pre>
