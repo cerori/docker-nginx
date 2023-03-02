@@ -9,6 +9,8 @@
 
 # docker-compose up -d
 
+# docker exec -it 이름 bash
+
 # ufw allow from 원격지아이피 to any port 80 proto tcp
 </code>
 </pre>

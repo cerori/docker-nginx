@@ -1,8 +1,30 @@
 version: "3.7"
 services:
+  db:
+    # 컨테이너 이름 지정
+    container_name: db
+    # 이미지 지정 - Official Images로 컨테이너를 생성
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_DATABASE: dico_db
+      MYSQL_USER: dico
+      MYSQL_PASSWORD: dico
+      MYSQL_ROOT_PASSWORD: root
+    # 호스트에 있는 폴더를 컨테이너 안에 있는 폴더로 마운트
+    volumes:
+      - ./mysql/data:/var/lib/mysql:rw
+    # 연결 포트 지정
+    ports:
+      - "3306:3306"       
   app:
     container_name: php
-    image: php:fpm
+    build:
+      context: ./php
+      dockerfile: Dockerfile
+    # image: php:fpm
+    # depends_on:
+    #   - db
     ports:
       - "9000:9000"
     volumes:
