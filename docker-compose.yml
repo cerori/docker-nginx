@@ -12,7 +12,7 @@ services:
     # 이미지 지정 - 직접 작성한 dockerfile을 실행하여 컨테이너 생성
     build:
       context: ./nginx
-      dockerfile: dockerfile
+      dockerfile: Dockerfile
     depends_on:
       - app
     volumes:
