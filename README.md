@@ -29,6 +29,8 @@
 # serve -p 3000 -s docs
 
 ln -s dexense.conf /etc/nginx/sites-enabled/dexense.conf
+
+apidoc -i ./examples -f .route.js -o ../docs -t ./template
 </code>
 </pre>
 
